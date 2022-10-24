@@ -15,6 +15,7 @@ import useTable from "../../components/controls/useTable";
 import * as employeeService from "../../services/employeeService";
 import Controls from "../../components/controls/Controls";
 import { Search } from "@material-ui/icons";
+import AddIcon from "@material-ui/icons/Add";
 
 const useStyles = makeStyles((theme) => ({
   pageContent: {
@@ -23,6 +24,10 @@ const useStyles = makeStyles((theme) => ({
   },
   searchInput: {
     width: "75%",
+  },
+  newButton: {
+    position: "absolute",
+    right: "10px",
   },
 }));
 
@@ -66,7 +71,7 @@ export default function Employees() {
         icon={<PeopleOutlineTwoToneIcon fontSize="large" />}
       />
       <Paper className={classes.pageContent}>
-        {/* <EmployeeForm /> */}
+        <EmployeeForm />
         <Toolbar>
           <Controls.Input
             label="Search Employees"
@@ -79,6 +84,12 @@ export default function Employees() {
               ),
             }}
             onChange={handleSearch}
+          />
+          <Controls.Button
+            text="Add New"
+            variant="outlined"
+            startIcon={<AddIcon />}
+            className={classes.newButton}
           />
         </Toolbar>
         <TblContainer>
