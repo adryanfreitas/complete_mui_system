@@ -3,8 +3,10 @@ import {
   DialogContent,
   DialogTitle,
   makeStyles,
+  Typography,
 } from "@material-ui/core";
 import React from "react";
+import Controls from "./Controls";
 
 const useStyles = makeStyles((theme) => ({
   dialogWrapper: {
@@ -21,10 +23,15 @@ export default function Popup(props) {
     <Dialog
       open={openPopup}
       maxWidth="md"
-      className={{ paper: classes.dialogWrapper }}
+      classes={{ paper: classes.dialogWrapper }}
     >
-      <DialogTitle>
-        <div>title goes here.</div>
+      <DialogTitle className={classes.DialogTitle}>
+        <div style={{ display: "flex" }}>
+          <Typography variant="h6" component="div" style={{ flexGrow: 1 }}>
+            {title}
+          </Typography>
+          <Controls.Button color="secondary" text="X"></Controls.Button>
+        </div>
       </DialogTitle>
       <DialogContent>{children}</DialogContent>
     </Dialog>
