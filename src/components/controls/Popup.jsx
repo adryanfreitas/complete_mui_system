@@ -7,6 +7,7 @@ import {
 } from "@material-ui/core";
 import React from "react";
 import Controls from "./Controls";
+import CloseIcon from "@material-ui/icons/Close";
 
 const useStyles = makeStyles((theme) => ({
   dialogWrapper: {
@@ -30,7 +31,9 @@ export default function Popup(props) {
           <Typography variant="h6" component="div" style={{ flexGrow: 1 }}>
             {title}
           </Typography>
-          <Controls.Button color="secondary" text="X"></Controls.Button>
+          <Controls.ActionButton color="secondary">
+            <CloseIcon />
+          </Controls.ActionButton>
         </div>
       </DialogTitle>
       <DialogContent>{children}</DialogContent>
