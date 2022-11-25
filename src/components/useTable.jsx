@@ -1,16 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import {
-  makeStyles,
   Table,
-  TableCell,
   TableHead,
-  TablePagination,
   TableRow,
+  TableCell,
+  makeStyles,
+  TablePagination,
   TableSortLabel,
 } from "@material-ui/core";
-import { useState } from "react";
 
-const useStayles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => ({
   table: {
     marginTop: theme.spacing(3),
     "& thead th": {
@@ -19,7 +18,7 @@ const useStayles = makeStyles((theme) => ({
       backgroundColor: theme.palette.primary.light,
     },
     "& tbody td": {
-      fontWeight: "400",
+      fontWeight: "300",
     },
     "& tbody tr:hover": {
       backgroundColor: "#fffbf2",
@@ -29,7 +28,7 @@ const useStayles = makeStyles((theme) => ({
 }));
 
 export default function useTable(records, headCells, filterFn) {
-  const classes = useStayles();
+  const classes = useStyles();
 
   const pages = [5, 10, 25];
   const [page, setPage] = useState(0);
@@ -60,6 +59,7 @@ export default function useTable(records, headCells, filterFn) {
                 headCell.label
               ) : (
                 <TableSortLabel
+                  active={orderBy === headCell.id}
                   direction={orderBy === headCell.id ? order : "asc"}
                   onClick={() => {
                     handleSortRequest(headCell.id);
@@ -122,7 +122,7 @@ export default function useTable(records, headCells, filterFn) {
     return 0;
   }
 
-  const recordsAfterPadingAndSorting = () => {
+  const recordsAfterPagingAndSorting = () => {
     return stableSort(
       filterFn.fn(records),
       getComparator(order, orderBy)
@@ -133,6 +133,6 @@ export default function useTable(records, headCells, filterFn) {
     TblContainer,
     TblHead,
     TblPagination,
-    recordsAfterPadingAndSorting,
+    recordsAfterPagingAndSorting,
   };
 }
